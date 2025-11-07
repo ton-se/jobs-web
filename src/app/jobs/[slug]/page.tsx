@@ -2,6 +2,8 @@ import { getJob } from '@/app/lib/data'
 
 export async function generateMetadata({params}: { params: { slug: string } }) {
     const job = await getJob(params)
+    if (!job) return {}
+
     return {
         title: job.title,
         description: `${job.company.name} | ${job.locations?.join(', ')}`,

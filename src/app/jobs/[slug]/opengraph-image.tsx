@@ -1,4 +1,5 @@
 import {ImageResponse} from 'next/og'
+
 import {getJob} from '@/app/lib/data'
 
 // Image metadata
@@ -12,6 +13,11 @@ export const contentType = 'image/png'
 // Image generation
 export default async function Image({params}: { params: { slug: string } }) {
     const job = await getJob(params)
+    if (!job) return null
+
+    if (!job.company.logo) {
+        job.company.logo = new URL('/company.png', process.env.NEXT_PUBLIC_BASE_URL).toString()
+    }
 
     return new ImageResponse(
         <div
@@ -41,7 +47,7 @@ export default async function Image({params}: { params: { slug: string } }) {
                     marginRight: '80px',
                 }}
             >
-                <img
+                {job.company.logo && <img
                     src={job.company.logo}
                     alt={job.company.name}
                     width="220"
@@ -50,7 +56,8 @@ export default async function Image({params}: { params: { slug: string } }) {
                         borderRadius: '20px',
                         objectFit: 'contain',
                     }}
-                />
+                />}
+
             </div>
 
             {/* Right content */}
@@ -61,21 +68,22 @@ export default async function Image({params}: { params: { slug: string } }) {
                     maxWidth: '680px',
                 }}
             >
-                {job.types.map((type: string, index: number) => <div key={index}
-                                                                     style={{
-                                                                         backgroundColor: '#10b981',
-                                                                         color: 'white',
-                                                                         fontWeight: 600,
-                                                                         fontSize: 28,
-                                                                         padding: '4px 12px',
-                                                                         borderRadius: '6px',
-                                                                         alignSelf: 'flex-start',
-                                                                         marginLeft: '8px',
-                                                                         marginBottom: '20px',
-                                                                     }}
-                >
-                    {type}
-                </div>)}
+                {job.types.map((type: string, index: number) =>
+                    <div key={index}
+                         style={{
+                             backgroundColor: '#10b981',
+                             color: 'white',
+                             fontWeight: 600,
+                             fontSize: 28,
+                             padding: '4px 12px',
+                             borderRadius: '6px',
+                             alignSelf: 'flex-start',
+                             marginLeft: '8px',
+                             marginBottom: '20px',
+                         }}
+                    >
+                        {type}
+                    </div>)}
 
 
                 <div
