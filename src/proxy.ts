@@ -15,7 +15,7 @@ export async function proxy(req: NextRequest) {
 
     // Detect common crawler/social bot user agents
     const ua = req.headers.get('user-agent') || ''
-    const isBot = /(facebookexternalhit|Twitterbot|Pinterest|Slackbot|WhatsApp|LinkedInBot|Discordbot|TelegramBot|Googlebot|bingbot|DuckDuckBot|YandexBot|Screaming\s*Frog|facebookcatalog|Applebot|Embedly|Quora\s*Link\s*Preview|ia_archiver)/i.test(ua)
+    const isBot = /(bot|facebook|twitter|pinterest|slack|whatsapp|linkedin|discord|telegram|google|bing|duckduck|yandex|vercel|screaming\s*frog|apple|embedly|quora|ia_archiver)/i.test(ua)
 
     // If it's a bot, serve our page so OG tags/images come from our app
     if (isBot) {
