@@ -17,6 +17,10 @@ export async function generateMetadata({params}: { params: { slug: string } }) {
     const rawDescription = descriptionParts.join(' | ')
 
     return {
+        openGraph: {
+            siteName: 'Tonse Jobs',
+            url: 'https://example.com/' + job.short_url,
+        },
         title: truncate(job.title, 60), // Google displays ~50-60 chars
         description: truncate(rawDescription, 155), // Optimal SEO length: 150-160 chars
     }

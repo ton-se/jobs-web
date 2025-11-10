@@ -4,7 +4,7 @@ import { cache } from 'react'
 export const getJob = cache(async (params: { slug: string } ) => {
     try {
         const {slug} = await params
-        return fetch(`https://api.jobs.tonse.co.zm/v2/jobs/${slug}`).then((res) => res.json())
+        return fetch(`https://api.jobs.tonse.co.zm/v3/jobs/${slug}`).then((res) => res.json())
     } catch (e) {
         console.error(e)
         return null
