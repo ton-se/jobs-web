@@ -1,6 +1,7 @@
 import {getJob} from '@/lib/data'
+import type {Metadata} from 'next'
 
-export async function generateMetadata({params}: { params: { slug: string } }) {
+export async function generateMetadata({params}: { params: { slug: string } }): Promise<Metadata> {
     const job = await getJob(params)
     if (!job) return {}
 
@@ -16,13 +17,18 @@ export async function generateMetadata({params}: { params: { slug: string } }) {
     const descriptionParts = [job.company.name, locationOrType].filter(Boolean)
     const rawDescription = descriptionParts.join(' | ')
 
+    const url = 'https://jobs.tonse.co.zm/' + job.short_url
+
     return {
-        openGraph: {
-            siteName: 'Tonse Jobs',
-            url: 'https://example.com/' + job.short_url,
-        },
         title: truncate(job.title, 60), // Google displays ~50-60 chars
         description: truncate(rawDescription, 155), // Optimal SEO length: 150-160 chars
+        openGraph: {
+            siteName: 'Tonse Jobs',
+            url: url,
+            title: truncate(job.title, 60),
+            description: truncate(rawDescription, 155),
+            // Add other OG fields as needed
+        },
     }
 }
 
