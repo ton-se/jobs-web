@@ -12,6 +12,7 @@ export default function OG({children}: Readonly<Props>) {
         <div style={{ position: 'absolute', width: 500, height: 500, display: 'flex', backgroundColor: '#10b981', borderRadius: '50%', bottom: -300, left: -300 }}></div>
         <div style={{ position: 'absolute', width: '900px', height: '900px', display: 'flex', backgroundColor: '#10b981', borderRadius: '50%', top: '-130px', right: '-600px' }}></div>
         <div style={{ position: 'absolute', display: 'flex', height: '100%', width: 270, top: 24, right: 40}}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={phoneImageUrl} alt='phone'/>
         </div>
         <div style={{ position: 'absolute', left: 32, top: 24, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

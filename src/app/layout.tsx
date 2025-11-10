@@ -10,13 +10,6 @@ export const metadata: Metadata = {
     },
     description: 'Zambia Jobs local and remote all in one place',
     metadataBase: new URL('https://jobs.tonse.co.zm'),
-    openGraph: {
-        siteName: 'Tonse Jobs',
-        // Remove url from here - it's not needed in root layout
-    },
-    appleWebApp: {
-        title: 'Tonse Jobs',
-    },
 }
 
 type Props = {
