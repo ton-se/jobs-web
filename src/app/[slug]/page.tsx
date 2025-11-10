@@ -1,4 +1,4 @@
-import {getJob} from '@/app/lib/data'
+import {getJob} from '@/lib/data'
 
 export async function generateMetadata({params}: { params: { slug: string } }) {
     const job = await getJob(params)
