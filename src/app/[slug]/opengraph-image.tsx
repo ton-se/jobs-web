@@ -25,7 +25,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
     return new ImageResponse(
         <OG>
             <div style={{fontSize: 64, fontStyle: 'bold', textAlign: 'center', lineHeight: 1, display: 'flex'}}>{truncate(job.title, 54)}</div>
-            <div style={{fontSize: 38, display: 'flex'}}>{truncate(job.company.name, 40)}</div>
+            <div style={{fontSize: 38, display: 'flex', textAlign: 'center'}}>{truncate(job.company.name, 40)}</div>
             <div style={{fontSize: 32, display: 'flex', marginTop: 8}}>{rawDescription}</div>
             {job.closes_at && <div style={{fontSize: 28, color: '#5B6063', display: 'flex'}}>Application deadline: {new Date(job.closes_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', })}</div>}
             <PlayStore/>
