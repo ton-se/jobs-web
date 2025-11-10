@@ -1,4 +1,5 @@
 import {ImageResponse} from 'next/og'
+import OG from "@/components/og";
 
 // Image metadata
 export const alt = 'About Tonse Jobs'
@@ -12,19 +13,7 @@ export const contentType = 'image/png'
 // Image generation
 export default async function Image() {
     return new ImageResponse(
-        <div
-            style={{
-                fontSize: 128,
-                background: 'white',
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}
-        >
-            About Acme
-        </div>,
+        <OG>Welcome</OG>,
         {
             ...size
         }
