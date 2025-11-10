@@ -12,10 +12,10 @@ export const metadata: Metadata = {
     metadataBase: new URL('https://jobs.tonse.co.zm'),
     openGraph: {
         siteName: 'Tonse Jobs',
-        url: 'https://jobs.tonse.co.zm', // Add the base URL
+        // Remove url from here - it's not needed in root layout
     },
     appleWebApp: {
-        title: 'Tonse Jobs', // Use this instead of meta tag
+        title: 'Tonse Jobs',
     },
 }
 

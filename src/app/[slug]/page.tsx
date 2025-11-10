@@ -17,17 +17,17 @@ export async function generateMetadata({params}: { params: { slug: string } }): 
     const descriptionParts = [job.company.name, locationOrType].filter(Boolean)
     const rawDescription = descriptionParts.join(' | ')
 
-    const url = 'https://jobs.tonse.co.zm/' + job.short_url
+    // Use absolute URL or relative to metadataBase
+    const url = new URL(`/${job.short_url}`, 'https://jobs.tonse.co.zm').toString()
 
     return {
-        title: truncate(job.title, 60), // Google displays ~50-60 chars
-        description: truncate(rawDescription, 155), // Optimal SEO length: 150-160 chars
+        title: truncate(job.title, 60),
+        description: truncate(rawDescription, 155),
         openGraph: {
             siteName: 'Tonse Jobs',
-            url: url,
+            url: url, // Absolute URL
             title: truncate(job.title, 60),
             description: truncate(rawDescription, 155),
-            // Add other OG fields as needed
         },
     }
 }
